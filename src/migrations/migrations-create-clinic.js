@@ -2,18 +2,19 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('clincs', {
-    //     address : DataTypes.STRING,
-    // description: DataTypes.STRING,
-    // image: DataTypes.STRING
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      name: {
+        type: Sequelize.STRING
+      },
       address: {
         type: Sequelize.STRING
       },
+     
       description: {
         type: Sequelize.TEXT
       },
