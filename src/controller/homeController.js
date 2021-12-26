@@ -27,22 +27,42 @@ let getCRUD = (req,res)=>{
 //[POST] /post-crud
 let postCRUD = async(req,res)=>{
     let msg= await CRUDService.createNewUser(req.body)
-    console.log(msg);
+ 
     res.send("post crud")
 }
 //[GET] /get-crud
 let displayGetCRUD = async (req,res)=>{
     let data = await CRUDService.getAllUser()
-    console.log("----------");
-    console.log(data);
-    console.log("----------");
     res.render("display-crud.ejs",{data:data})
 }
+//[GET] /edit-crud?id=
+let editCRUD = async (req,res)=>{
+    let userId = req.query.id
+    if(userId){
+        let userData = await CRUDService.getUserInforID(userId)
+        if(userData){
+            return res.render("editCRUD.ejs",{user:userData})
+        }else{
+            return res.send("Found not user")
+        }
+       
+    }else{
+        return res.send("Found not user")
+    }
+    
+}
+let putCRUD = async (req,res)=>{
+    let data = req.body
+    await CRUDService.updateUserData(data)
+    return res.send("Thành công")
 
+}
 module.exports = {
     getHomePage: getHomePage,
     getAboutPage:getAboutPage,
     getCRUD:getCRUD,
     postCRUD:postCRUD,
-    displayGetCRUD:displayGetCRUD
+    displayGetCRUD:displayGetCRUD,
+    editCRUD:editCRUD,
+    putCRUD:putCRUD
 }

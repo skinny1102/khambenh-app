@@ -16,7 +16,8 @@
             <th scope="col">First</th>
             <th scope="col">Last</th>
             <th scope="col">PhoneNumver</th>
-            <th scope="col">AddressNumver</th>
+            <th scope="col">AddressNumBer</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -27,6 +28,10 @@
                     <td><%= element.lastName %></td>
                     <td><%= element.phonenumber %></td>
                     <td><%= element.address %></td>
+                    <td>
+                      <a href="/edit-crud?id=<%= element.id %>" class="btn btn-success">Edit</a>
+                      <div class="btn btn-danger">Delete</div>
+                    </td>
                   </tr>
             <% });%>
          
